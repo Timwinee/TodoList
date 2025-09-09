@@ -1,0 +1,477 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+/* Reset and base styles  */
+* {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Links */
+a, a:link, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Common */
+aside, nav, footer, header, section, main {
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+ul, ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+address {
+  font-style: normal;
+}
+
+/* Form */
+input, textarea, button, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button, input[type=submit] {
+  display: inline-block;
+  box-shadow: none;
+  background-color: transparent;
+  background: none;
+  cursor: pointer;
+}
+
+input:focus, input:active,
+button:focus, button:active {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+label {
+  cursor: pointer;
+}
+
+legend {
+  display: block;
+}
+
+input[type=file] {
+  max-width: 100%;
+}
+
+.btn {
+  transition: 0.3s;
+}
+.btn:active {
+  transform: translateY(5px);
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+body main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+body main .main-header {
+  height: 300px;
+  width: 100%;
+  background-image: url(../img/dark-back.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body main .main-bottom {
+  width: 100%;
+  height: 80vh;
+  overflow-y: auto;
+  background-color: rgb(6, 6, 19);
+  flex-grow: 1;
+}
+body .todo-list {
+  position: absolute;
+  max-width: 540px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  top: 80px;
+}
+body .todo-list .todo-start {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px;
+}
+body .todo-list .todo-start h2 {
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 15px;
+}
+body .todo-list .todo-start .dark-light-btn {
+  width: 26px;
+  height: 26px;
+  transition: 0.3s;
+}
+body .todo-list .todo-start .dark-light-btn .light-mode {
+  display: none;
+}
+body .todo-list .todo-start .dark-light-btn:hover svg path {
+  fill: gray;
+}
+body .todo-input {
+  max-width: 540px;
+  width: 100%;
+  background-color: rgb(37, 39, 61);
+  color: rgb(200, 203, 231);
+  border-radius: 5px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+body .todo-input .enter-tasks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body .todo-input .enter-tasks .input-tasks {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.25px;
+}
+body .todo-input .enter-tasks .checkbox-main {
+  margin-right: 24px;
+  border: solid rgb(57, 58, 75) 1px;
+  border-style: initial;
+  border-radius: 100%;
+}
+body .todo-input .enter-tasks .btn-add {
+  width: 52px;
+  border-radius: 5px;
+  height: 28px;
+  background: linear-gradient(to right, rgb(85, 221, 255), rgb(192, 88, 243));
+  font-size: 12px;
+  font-weight: 400;
+  color: white;
+}
+body .all-notifs {
+  max-height: 500px;
+  height: 100%;
+  overflow-y: auto;
+  background: rgb(37, 39, 61);
+  display: flex;
+  flex-direction: column;
+}
+body .all-notifs .empty-place {
+  width: 230px;
+  margin: 50px 0;
+  align-self: center;
+}
+body .all-notifs .created-div {
+  max-width: 540px;
+  width: 100%;
+  transition: transform 0.2s ease, opacity 0 ease;
+  cursor: grab;
+}
+body .all-notifs .dragging :where(.notifications) {
+  opacity: 0.2;
+}
+body .all-notifs .created-div.dragging {
+  opacity: 0.8;
+  transform: scale(1.02);
+}
+body .all-notifs .notifications {
+  max-width: 540px;
+  width: 100%;
+  height: 100%;
+  padding: 20px 24px;
+  background-color: rgb(37, 39, 61);
+  border-bottom: solid 1px rgb(57, 58, 75);
+  position: relative;
+  display: flex;
+  word-break: break-all;
+}
+body .all-notifs .notifications .checkbox {
+  margin-right: 24px;
+}
+body .all-notifs .notifications .notif-text {
+  color: rgb(200, 203, 231);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: -0.25px;
+  max-width: 420px;
+}
+body .all-notifs .notifications .line-through {
+  text-decoration: line-through;
+  color: rgb(77, 80, 103);
+}
+body .all-notifs .notifications .back-btn {
+  position: absolute;
+  right: 24px;
+}
+body .all-notifs .notifications .back-btn:hover svg path {
+  fill: white;
+}
+body .lists-nav {
+  max-width: 540px;
+  background: rgb(37, 39, 61);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: rgb(91, 94, 126);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.19px;
+}
+body .lists-nav .three-btns {
+  max-width: 166px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+body .lists-nav .three-btns .btn:hover {
+  color: rgb(227, 228, 241);
+}
+body .lists-nav .clear-btn:hover {
+  color: rgb(227, 228, 241);
+}
+body .lists-nav .actives {
+  color: rgb(58, 124, 253) !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+.lightBody {
+  font-family: "Josefin Sans", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+.lightBody main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.lightBody main .main-header {
+  height: 300px;
+  width: 100%;
+  background-image: url(../img/light-back.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.lightBody main .main-bottom {
+  width: 100%;
+  height: 80vh;
+  overflow-y: auto;
+  background-color: rgb(255, 255, 255);
+  flex-grow: 1;
+}
+.lightBody .todo-list {
+  position: absolute;
+  max-width: 540px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  top: 80px;
+}
+.lightBody .todo-list .todo-start {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px;
+}
+.lightBody .todo-list .todo-start h2 {
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 15px;
+}
+.lightBody .todo-list .todo-start .dark-light-btn {
+  width: 26px;
+  height: 26px;
+  transition: 0.3s;
+}
+.lightBody .todo-list .todo-start .dark-light-btn .dark-mode {
+  display: none;
+}
+.lightBody .todo-list .todo-start .dark-light-btn .light-mode {
+  display: flex;
+}
+.lightBody .todo-list .todo-start .dark-light-btn:hover svg path {
+  fill: gray;
+}
+.lightBody .todo-input {
+  max-width: 540px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  color: rgb(57, 58, 75);
+  border-radius: 5px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+.lightBody .todo-input .enter-tasks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.lightBody .todo-input .enter-tasks .input-tasks {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.25px;
+}
+.lightBody .todo-input .enter-tasks .checkbox-main {
+  margin-right: 24px;
+  border: solid rgb(57, 58, 75) 1px;
+  border-style: initial;
+  border-radius: 100%;
+}
+.lightBody .todo-input .enter-tasks .btn-add {
+  width: 52px;
+  border-radius: 5px;
+  height: 28px;
+  background: linear-gradient(to right, rgb(85, 221, 255), rgb(192, 88, 243));
+  font-size: 12px;
+  font-weight: 400;
+  color: white;
+}
+.lightBody .all-notifs {
+  max-height: 500px;
+  height: 100%;
+  overflow-y: auto;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 0 30px rgb(71, 71, 71);
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+}
+.lightBody .all-notifs .empty-place {
+  width: 230px;
+  margin: 50px 0;
+  align-self: center;
+}
+.lightBody .all-notifs .created-div {
+  max-width: 540px;
+  width: 100%;
+}
+.lightBody .all-notifs .notifications {
+  max-width: 540px;
+  width: 100%;
+  height: 100%;
+  padding: 20px 24px;
+  background-color: rgb(255, 255, 255);
+  border-bottom: solid 1px rgb(227, 228, 241);
+  position: relative;
+  display: flex;
+  word-break: break-all;
+}
+.lightBody .all-notifs .notifications .checkbox {
+  margin-right: 24px;
+}
+.lightBody .all-notifs .notifications .notif-text {
+  color: rgb(73, 76, 107);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: -0.25px;
+  max-width: 420px;
+}
+.lightBody .all-notifs .notifications .line-through {
+  text-decoration: line-through;
+  color: rgb(209, 210, 218);
+}
+.lightBody .all-notifs .notifications .back-btn {
+  position: absolute;
+  right: 24px;
+}
+.lightBody .all-notifs .notifications .back-btn svg path {
+  fill: rgb(151, 151, 151);
+}
+.lightBody .all-notifs .notifications .back-btn:hover svg path {
+  fill: rgb(56, 56, 56);
+}
+.lightBody .lists-nav {
+  max-width: 540px;
+  background: rgb(255, 255, 255);
+  padding: 16px 24px;
+  display: flex;
+  box-shadow: 0 0 10px rgb(148, 148, 148);
+  justify-content: space-between;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: rgb(91, 94, 126);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.19px;
+  border-top: solid 1px rgb(227, 228, 241);
+}
+.lightBody .lists-nav .left-items {
+  color: rgb(148, 149, 165);
+}
+.lightBody .lists-nav .three-btns {
+  max-width: 166px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: rgb(148, 149, 165);
+}
+.lightBody .lists-nav .three-btns .btn:hover {
+  color: rgb(73, 76, 107);
+}
+.lightBody .lists-nav .clear-btn:hover {
+  color: rgb(73, 76, 107);
+}
+.lightBody .lists-nav .actives {
+  color: rgb(58, 124, 253) !important;
+}/*# sourceMappingURL=style.css.map */
